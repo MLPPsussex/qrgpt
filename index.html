@@ -1,3 +1,7 @@
+<html>
+  <body>
+    <p> QR test</p>
+<script>
 function generateQRCode(text) {
   // Define the QR code version and error correction level
   const version = 1; // You can adjust the version for larger QR codes if needed.
@@ -67,3 +71,7 @@ function drawQRCodeCanvas(qrCode) {
 const inputString = "Your 30-byte string here";
 const qrCodeDataUrl = generateQRCode(inputString);
 console.log(qrCodeDataUrl);
+  alert(qrCodeDataUrl)
+</script>
+    </body>
+</html>
