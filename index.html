@@ -1,0 +1,69 @@
+function generateQRCode(text) {
+  // Define the QR code version and error correction level
+  const version = 1; // You can adjust the version for larger QR codes if needed.
+  const errorCorrectionLevel = 'L'; // L (Low), M (Medium), Q (Quartile), H (High)
+
+  // Encode the text into a binary format
+  const data = textToBinary(text);
+
+  // Define the size of the QR code (in modules)
+  const size = 4 * version + 17;
+
+  // Create a 2D array to represent the QR code grid
+  const qrCode = Array.from({ length: size }, () => Array(size).fill(false));
+
+  // Add the function patterns, separators, and timing patterns
+  addFunctionPatterns(qrCode);
+  addSeparators(qrCode);
+  addTimingPatterns(qrCode);
+
+  // Add the data bits to the QR code grid
+  addDataBits(qrCode, data, errorCorrectionLevel);
+
+  // Add the version information if needed
+  if (version >= 7) {
+    addVersionInformation(qrCode, version);
+  }
+
+  // Convert the QR code grid into a canvas
+  const canvas = drawQRCodeCanvas(qrCode);
+
+  return canvas.toDataURL(); // Return the QR code as a data URL
+}
+
+function textToBinary(text) {
+  // Convert the text to binary representation
+  const binary = text.split('').map(char => char.charCodeAt(0).toString(2).padStart(8, '0')).join('');
+  return binary;
+}
+
+function addFunctionPatterns(qrCode) {
+  // Function patterns are large squares used for positioning and alignment
+  // (omitted in this simplified implementation)
+}
+
+function addSeparators(qrCode) {
+  // Add separators around the QR code (omitted in this simplified implementation)
+}
+
+function addTimingPatterns(qrCode) {
+  // Add timing patterns (omitted in this simplified implementation)
+}
+
+function addDataBits(qrCode, data, errorCorrectionLevel) {
+  // Add data bits to the QR code grid (omitted in this simplified implementation)
+}
+
+function addVersionInformation(qrCode, version) {
+  // Add version information to the QR code (omitted in this simplified implementation)
+}
+
+function drawQRCodeCanvas(qrCode) {
+  // Convert the QR code 2D array into a canvas (omitted in this simplified implementation)
+  // You can use HTML5 Canvas API to draw the QR code pattern.
+}
+
+// Usage example:
+const inputString = "Your 30-byte string here";
+const qrCodeDataUrl = generateQRCode(inputString);
+console.log(qrCodeDataUrl);
